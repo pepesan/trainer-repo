@@ -27,7 +27,7 @@ export class TrainerService {
 
   async delete(id: string): Promise<Trainer> {
     const trainerG = await this.trainerModel.findById(id);
-    await this.trainerModel.findOneAndRemove({ _id : id });
+    await this.trainerModel.findOneAndRemove({ _id : id }, {useFindAndModify: false});
     return trainerG;
   }
 }

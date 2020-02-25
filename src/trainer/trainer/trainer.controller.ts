@@ -20,6 +20,7 @@ export class TrainerController {
     return this.trainerService.findById(id);
   }
   @Put(':id')
+  @Post(':id')
   async update(@Param('id') id: string, @Body() trainer: Trainer): Promise<Trainer> {
     return this.trainerService.updateById(id, trainer);
   }
