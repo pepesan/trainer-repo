@@ -5,7 +5,9 @@ import { TrainerController } from './trainer.controller';
 import { TrainerService } from './trainer.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Trainer', schema: TrainerSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'Trainer', schema: TrainerSchema }]),
+    ],
   controllers: [TrainerController],
   providers: [TrainerService],
 })
