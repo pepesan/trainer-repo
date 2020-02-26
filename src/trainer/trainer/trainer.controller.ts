@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { Trainer } from './trainer';
 
 import { TrainerService } from './trainer.service';
@@ -7,8 +7,9 @@ import { TrainerService } from './trainer.service';
 export class TrainerController {
   constructor(private readonly trainerService: TrainerService) {}
   @Get()
-  async findAll(): Promise<Trainer[]> {
-    return this.trainerService.findAll();
+  async findAll(@Query('numPage') numPage: number = 0,
+                @Query('numElem') numElem: number): Promise<Trainer[]> {
+    return this.trainerService.findAll(numPage, numElem);
   }
 
   @Post()

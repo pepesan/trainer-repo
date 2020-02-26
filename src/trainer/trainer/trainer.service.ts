@@ -7,8 +7,8 @@ import { Trainer } from './trainer';
 export class TrainerService {
   constructor(@InjectModel('Trainer') private readonly trainerModel: Model<Trainer>) {}
 
-  async findAll(): Promise<Trainer[]> {
-    return this.trainerModel.find().exec();
+  async findAll(numPage: number = 0, numElem: number = 10): Promise<Trainer[]> {
+    return this.trainerModel.find().skip(numElem * numPage).limit(+numElem).exec();
   }
   async create(trainer: Trainer): Promise<Trainer> {
     const createdTrainer = new this.trainerModel(trainer);
